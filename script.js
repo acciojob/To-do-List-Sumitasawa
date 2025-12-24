@@ -1,28 +1,32 @@
-//your code here
+// your code here
 
-let todos=[];
+document.addEventListener("DOMContentLoaded", () => {
+  let todos = [];
 
-const addbtn=document.getElementById("addTodoBtn");
-const ol=document.getElementById("todoList");
+  const input = document.querySelector("input");
+  const addbtn = document.querySelector("button");
+  const ol = document.querySelector("ol");
 
-addbtn.addEventListener('click',()=>{
-	 const input = document.getElementById("newTodoInput").value.trim();
-	if(!input){
-		alert("Todo should be filled");
-		return;
-	}
-	todos.push(input);
-	 document.getElementById("newTodoInput").value = ""; 
-	renderlist();
-})
+  addbtn.addEventListener("click", () => {
+    const value = input.value.trim();
 
-function  renderlist() {
-	ol.innerHTML = ""; 
-	todos.forEach(todo=>{
-		const li=document.createElement('li');
-		li.textContent=todo;
-		ol.appendChild(li);
-	})
-}
+    if (!value) {
+      alert("Todo should be filled");
+      return;
+    }
 
+    todos.push(value);
+    input.value = ""; // clear input
+    renderList();
+  });
 
+  function renderList() {
+    ol.innerHTML = "";
+
+    todos.forEach(todo => {
+      const li = document.createElement("li");
+      li.textContent = todo;
+      ol.appendChild(li);
+    });
+  }
+});
